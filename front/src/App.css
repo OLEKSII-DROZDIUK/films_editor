@@ -1,0 +1,56 @@
+.files-loader {
+  padding:4rem;
+  text-align: center;
+}
+
+.film-gallery{
+	position: relative;
+}
+
+.film_actors-name {
+  font-size:1.5rem;
+}
+
+.film-year::before {
+    content:'Year:';
+    display:inline-block;
+	color:black;
+	font-weight: bold;
+
+}
+
+.film-id::before {
+    content:'id:';
+    display:inline-block;
+	color:black;
+	font-weight: bold;
+}
+
+.film_btn-del{
+	margin-top:1rem;
+}
+
+.sort-title{
+	padding:0.5rem;
+	position: fixed;
+	top:10rem;
+	right:0px;
+	z-index: 999;
+}
+
+.add-film {
+	align-self: flex-start;
+	padding:0.5rem;
+	position: fixed;
+	top:10rem;
+	z-index: 999;
+}
+
+.stars_new {
+	color:green;
+	border:1px solid green;
+}
+
+.film-gallery_filters{
+	align-self: center;
+}
