@@ -103,6 +103,8 @@ class App extends Component {
 	render(){
 		const {films} = this.props;
 
+		console.log(this.props)
+
 		if (this.state.hasError) {
 			return <FileLoadError></FileLoadError>
 		}
@@ -130,11 +132,11 @@ class App extends Component {
 					minFileSize={0}
 					clickable
 				>Click or drag file here for load .txt</Files>
-				<button type="button" className="btn btn-primary add-film" data-toggle="modal" data-target="#exampleModal">
+				<button type="button" className="btn btn-dark add-film" data-toggle="modal" data-target="#exampleModal">
 					<i className="fas fa-film"></i><br></br>Add new film
 				</button>
 				<button type="button" className="btn btn-dark sort-title" onClick={this.handleSortByName.bind(this)}>
-					<i className="fas fa-sort-up"></i><br></br>Sort<br></br>by<br></br>name
+					<i className="fas fa-sort-up"></i>Sort by name
 				</button>
 				<div className="form-group w-50 film-gallery_filters d-flex flex-column">
 					<label htmlFor="find-title">Filtred by film name</label>
