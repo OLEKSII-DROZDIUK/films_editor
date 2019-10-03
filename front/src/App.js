@@ -6,21 +6,26 @@ import FileLoadError from './components/FileLoadError/FileLoadError';
 import FilmCard from './components/FilmCard/FilmCard';
 import AddFilm from './components/AddFilm/AddFilm';
 
+import FormValidator from './modules/formValidator';
+import formRules from './modules/formValidationRules';
+
 import {getAllFilms, loadNewFilms, deleteFilm, addFilm, sortByName} from "./actions/action";
 import idGeneratorHelper from './helpers/idGeneratorHelper';
 import filterFilmsHelper from './helpers/filterFilmsHelper';
 import parseFileHelper from './helpers/parseFileHelper';
 import './App.css';
 
-
 class App extends Component {
 
 	constructor(props) {
 		super(props);
 
+		this.validator = new FormValidator(formRules);
+
 		this.state = {
 			title:'',
 			year:'',
+			star:'',
 			format:'DVD',
 			filterTitle:'',
 			filterStarName:'',
@@ -70,12 +75,29 @@ class App extends Component {
 
 		const collectionOfStars = document.getElementsByClassName("stars-name");
 		const stars = [];
-		for (let i = 0; i < collectionOfStars.length; i++) {
-			if(collectionOfStars[i].value.length >0){
-				stars.push(collectionOfStars[i].value)
+
+		const validation = this.validator.validate(this.state);
+        this.setState({ validation });
+        this.submitted = true;
+		
+		if (validation.isValid) {	
+
+			for (let i = 0; i < collectionOfStars.length; i++) {
+				if(collectionOfStars[i].value.length >0){
+					stars.push(collectionOfStars[i].value)
+				}
 			}
-		}
 		this.props.addFilmAction({myId:idGeneratorHelper(), stars, title:this.state.title, year:this.state.year, format:this.state.format})
+
+			document.getElementById("star").value= '';
+			document.getElementById("year").value= '';
+			document.getElementById("title").value= '';
+			this.setState({
+				title:'',
+				year:'',
+				star:'',
+			})
+		}
 	}
 
 	handleSortByName(event){
@@ -103,7 +125,9 @@ class App extends Component {
 	render(){
 		const {films} = this.props;
 
-		console.log(this.props)
+		let validation = this.submitted?            // if the form has been submitted at least once
+		this.validator.validate(this.state) :   // then check validity every time we render
+		this.state.validation                   // otherwise just use what's in state
 
 		if (this.state.hasError) {
 			return <FileLoadError></FileLoadError>
@@ -112,7 +136,7 @@ class App extends Component {
 		const allFilms = films.map(film => {
 			if(filterFilmsHelper(film, this.state)){
 				return(
-					<FilmCard film={film} deleteFilmAction={this.props.deleteFilmAction}></FilmCard>
+					<FilmCard key={film._id} film={film} deleteFilmAction={this.props.deleteFilmAction}></FilmCard>
 				)
 			}
 		})
@@ -147,7 +171,7 @@ class App extends Component {
 					<AddFilm 
 						handleChangeNewFilm={(event) => this.handleChangeNewFilm(event)} 
 						handleAddStar={(event) => this.handleAddStar(event)}
-						handleAddNewFilm={event => this.handleAddNewFilm(event)}>
+						handleAddNewFilm={event => this.handleAddNewFilm(event)} validation={validation}>
 					</AddFilm>
 				<div className="movie-card d-flex flex-wrap justify-content-center">
 					{allFilms}

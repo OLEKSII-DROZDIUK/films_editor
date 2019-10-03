@@ -19,7 +19,7 @@ export function filmsReducer(state = initialState, action ) {
         case ADD_FILM:
             return {...state, films:[...action.payload]}
         case SORT_BY_NAME:
-            return {...state, films:[...state.films.sort((a, b) =>  (a.title < b.title) ? -1 : ((b.title > a.title) ? 1 : 0) )]}
+            return {...state, films:[...state.films.sort((a,b) =>  (a.title.toLowerCase() < b.title.toLowerCase()) ? -1 : ((b.title > a.title) ? 1 : 0) )]}
         default:
             return state
     }

@@ -5,7 +5,7 @@ import idGeneratorHelper from '../../helpers/idGeneratorHelper';
 const FilmCard = (props) => {
 
    return (
-        <div key={props.film._id} className="card shadow p-3 mb-5 bg-white rounded m-1 card_film" style={{width:"20rem"}}>
+        <div className="card shadow p-3 mb-5 bg-white rounded m-1 card_film" style={{width:"20rem"}}>
             <div className="card-body d-flex flex-column film">
                 <h4 className="card-title text-center film-title">{props.film.title}</h4>
                 <h6 className="card-subtitle mb-2 text-warning text-center film-format">{props.film.format}</h6>
