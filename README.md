@@ -19,7 +19,8 @@ QUICK START
     "react-redux": "^7.1.1",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "validator": "^11.1.0"
 ```
 
 ### Package in server: 
