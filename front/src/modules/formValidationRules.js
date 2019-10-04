@@ -10,7 +10,7 @@ const formRules = [
 		method: 'isEmpty', 
 		validWhen: false, 
 		message: 'Enter at least one actor' 
-  	},
+	},
   	{ 
 		field: 'year',
 		method: 'isEmpty', 
