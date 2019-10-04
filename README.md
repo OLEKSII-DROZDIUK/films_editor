@@ -8,6 +8,10 @@ QUICK START
 
 2) Run all project with command "npm run dev" in main folder(./)
 
+### Application AWS ubuntu + pm2
+
+[Link application](http://18.216.210.110:1999/)
+
 
 ### Package in front: 
 ```

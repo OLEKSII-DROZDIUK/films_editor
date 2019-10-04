@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL = "http://localhost:5000"
+const URL = "http://localhost:4000"
 
 export const GET_FILMS = 'GET_FILMS';
 export const LOAD_NEW_FILMS = 'LOAD_NEW_FILMS';

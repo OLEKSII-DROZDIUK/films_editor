@@ -113,7 +113,8 @@ class App extends Component {
 	}
 
 	componentDidMount(){
-		this.props.getAllFilmsAction()
+		this.props.getAllFilmsAction();
+		this.submitted = true;
 	}
 
 	onFilesError(event) {
